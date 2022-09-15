@@ -5,10 +5,10 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "Twitter__BearerToken": "AAAAAAAAAAAAAAAAAAAAAJJVhAEAAAAA2euP%2BLLYzwLho6OxP69%2BL%2BpQDk4%3DiBIWaIpvmd1Xc2QVQ8vPi8uboR9pLgraw9kQ32uLHL5bZ0Qrdp"
+        "Twitter__BearerToken": ""
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5063"
+      "applicationUrl": "http://localhost:5000"
     },
     "IIS Express": {
       "commandName": "IISExpress",
