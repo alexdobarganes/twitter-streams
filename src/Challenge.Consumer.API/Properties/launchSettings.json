@@ -1,0 +1,29 @@
+{
+  "profiles": {
+    "Challenge.Consumer.API": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Twitter__BearerToken": "AAAAAAAAAAAAAAAAAAAAAJJVhAEAAAAA2euP%2BLLYzwLho6OxP69%2BL%2BpQDk4%3DiBIWaIpvmd1Xc2QVQ8vPi8uboR9pLgraw9kQ32uLHL5bZ0Qrdp"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5063"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:14585",
+      "sslPort": 0
+    }
+  }
+}
