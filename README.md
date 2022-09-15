@@ -1,4 +1,4 @@
-# twiter-stream
+# twitter-stream
 How to use?
 ##   Configuration
 * Locate the appsettings.json file inside the `src/Challenge/Consumer.API` and set the `BearerToken` field in the `Twitter` section.
