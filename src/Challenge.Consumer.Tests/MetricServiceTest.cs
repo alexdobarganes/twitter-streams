@@ -2,7 +2,8 @@
 
 namespace Challenge.Consumer.Tests;
 
-public class MetricServiceTest {
+public class MetricServiceTest
+{
     [Fact]
     public void ShouldTrackTheTop10Tags()
     {
@@ -38,15 +39,21 @@ public class MetricServiceTest {
     }
 
     [Fact]
-    public void ShouldCalculateTweetRateInSeconds() {
+    public async Task ShouldCalculateTweetRateInSeconds()
+    {
         var _sut = new MetricService();
-        _sut.Capture("");
-        var rate = _sut.GetEntriesPerSecond();
-        Assert.Equal(1, rate);
+        for (int i = 0; i < 100; i++)
+        {
+            _sut.Capture("");
+        }
+        Assert.Equal(100, _sut.GetEntriesPerSecond());
+        await Task.Delay(2000);
+        Assert.Equal(50, _sut.GetEntriesPerSecond());
     }
 
     [Fact]
-    public void ShouldTotalNumberOfTweetCapturedConcurrently() {
+    public void ShouldTotalNumberOfTweetCapturedConcurrently()
+    {
         var _sut = new MetricService();
         var tasks = new List<Task>(10);
         for (int i = 0; i < 10; i++)
