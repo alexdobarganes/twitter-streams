@@ -1,3 +1,3 @@
-﻿namespace Challenge.Consumer.API.Domain;
+﻿namespace Challenge.Consumer.API.Metrics;
 
 public record struct HashtagMetric(string Hashtag, long Entries);

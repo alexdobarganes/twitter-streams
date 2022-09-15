@@ -1,6 +1,7 @@
 using Challenge.Consumer.API;
-using Challenge.Consumer.API.Domain;
-using Challenge.Consumer.API.DTO;
+using Challenge.Consumer.API.Collectors;
+using Challenge.Consumer.API.Events;
+using Challenge.Consumer.API.Metrics;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,23 +11,22 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
 //DI
+builder.Services.AddMetrics();
 builder.Services.AddHandlers();
 builder.Services.AddDispatchers();
 builder.Services.AddTwitterStreams(builder.Configuration);
 
-builder.Services.AddSingleton<IMetricService, MetricService>();
+builder.Services.AddSingleton<IHashtagCollector, HashtagCollector>();
+builder.Services.AddSingleton<ITwitterMetrics, TwitterMetricsService>();
 
 var app = builder.Build();
-
 app.StreamEvents()
     .Stream<TweetReceived>();
 
 app.MapGet("/", () => "Welcome to Twitter Streaming Client");
-app.MapGet("/metrics", ([FromServices] IMetricService metricService) => {
+app.MapGet("/metrics", ([FromServices] ITwitterMetrics metricService) => {
     var dto = new {
-        tweetsPerSecond = metricService.GetEntriesPerSecond(),
-        totalTweetsReceived = metricService.GetTotalNumberOfEntriesReceived(),
-        totalHashtagsFound = metricService.GetTotalNumberHashtagsFound(),
+        data = metricService.GetMetricsData(),
         top10Hashtags = metricService.GetTopTenHashtags()
     };
 

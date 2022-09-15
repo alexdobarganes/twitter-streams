@@ -1,19 +1,19 @@
-﻿using Challenge.Consumer.API.Domain;
-using Challenge.Consumer.API.DTO;
+﻿using App.Metrics;
+using Challenge.Consumer.API.Metrics;
 
 namespace Challenge.Consumer.API.Events.Handlers
 {
     public class CaptureMetricsEventHandler : IEventHandler<TweetReceived>
     {
-        private readonly IMetricService _metricService;
+        private readonly IMetrics _metric;
 
-        public CaptureMetricsEventHandler(IMetricService metricService)
+        public CaptureMetricsEventHandler(IMetrics metrics)
         {
-            _metricService = metricService;
+            _metric = metrics;
         }
         public Task HandleAsync(TweetReceived @event, CancellationToken cancellationToken = default)
         {
-            _metricService.Capture(@event.Text);
+            _metric.Measure.Counter.Increment(MetricsRegistry.ReceivedTweetsCounter);
             return Task.CompletedTask;
         }
     }
