@@ -7,6 +7,7 @@ namespace Challenge.Consumer.API.Events.Handlers
     {
         private readonly IMetrics _metric;
 
+        //Didn't want to use any encapsulation to track the received tweets;
         public CaptureMetricsEventHandler(IMetrics metrics)
         {
             _metric = metrics;

@@ -11,6 +11,7 @@ namespace Challenge.Consumer.API.Collectors;
 /// </summary>
 public class HashtagCollector : IHashtagCollector
 {
+    //TODO: would be Intresting to explore more the AppMetrics library to track this metric
     private readonly ConcurrentDictionary<string, long> _hashtags = new();
     //private readonly ConcurrentBag<string> _colletedHashtags = new();
     private readonly IMetrics _metrics;
