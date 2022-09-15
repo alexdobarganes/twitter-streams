@@ -51,7 +51,7 @@ public class MetricServiceTest
     }
 
     [Fact]
-    public void ShouldTotalNumberOfTweetCapturedConcurrently()
+    public void ShouldGetTotalNumberOfTweetsCaptured()
     {
         var tasks = new List<Task>(10);
         for (int i = 0; i < 10; i++)
