@@ -14,7 +14,7 @@ public class TwitterStreamService: IEventStream
 
     public IEventStream Stream<T>() where T : class, IEvent
     {
-        _ = _twitterStreamClient.StartStreamAsync<T>(async t => await _eventDispatcher.PublishAsync(t));
+        _ = _twitterStreamClient.StartStreamAsync<T>(async t => await _eventDispatcher.PublishAsync(t).ConfigureAwait(false));
         return this;
     }
 }

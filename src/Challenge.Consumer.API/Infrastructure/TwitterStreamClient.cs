@@ -43,19 +43,19 @@ public class TwitterStreamClient : ITwitterStreamClient
 
             _logger.LogInformation("Connected successfuly to the stream");
 
-            var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+            var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
             using var tweets = new StreamReader(stream);
 
             while (!cancellationToken.IsCancellationRequested)
             {
-                var str = await tweets.ReadLineAsync();
+                var str = await tweets.ReadLineAsync().ConfigureAwait(false);
                 if (string.IsNullOrEmpty(str))
                     continue;
 
                 using var document = JsonDocument.Parse(str);
                 if (document.RootElement.TryGetProperty("data", out JsonElement data))
                 {
-                    _logger.LogDebug("New tweet received: {tweet}", str);
+                    _logger.LogDebug("New tweet received: {tweet}", str.Replace("•", ""));
                     var tweet = data.Deserialize<T>(new JsonSerializerOptions
                     {
                         PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance
